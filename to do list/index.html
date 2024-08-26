@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Aplikasi To-Do List</h1>
+            <h1>Faathir company</h1>
+            <div id="profile">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Masukkan nama kamu">
+
+                <label for="position">Position:</label>
+                <input type="text" id="position" placeholder="Masukkan posisi kamu">
+
+                <button id="update-profile-btn">Update Profile</button>
+            </div>
+            <div id="time">
+                <p id="current-date"></p>
+            </div>
+        </header>
+        <div class="input-container">
+            <textarea id="task-input" placeholder="Enter a new task"></textarea>
+            <select id="priority-level">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button id="add-task-btn">Upload tugas</button>
+        </div>
+        <h2>Tugas yang harus dilakukan:</h2>
+        <ul id="task-list">
+        </ul>
+        <h2>Tugas yang sudah diselesaikan:</h2>
+        <ul id="done-list">
+        </ul>
+        <button id="clear-all-btn">Hapus semua tugas</button>
+    </div>
+    <footer>
+        <h3>Aplikasi to do list untuk faathircompany.</h3>
+        <p>created by faathirdevelover</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
