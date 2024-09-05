@@ -17,18 +17,19 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
     flex-direction: column;
 }
 
 #profile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 20px;
-    text-align: center;
 }
 
 #profile label {
-    margin-right: 10px;
+    font-weight: bold;
 }
 
 #profile input {
