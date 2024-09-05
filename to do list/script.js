@@ -1,5 +1,5 @@
 // tanggal
-document.getElementById('current-date').textContent = new Date().toLocaleString();
+document.getElementById('date-picker').valueAsDate = new Date(); 
 
 // Function untuk setting nama dan jabatan
 document.getElementById('update-profile-btn').addEventListener('click', function() {
@@ -15,10 +15,10 @@ document.getElementById('update-profile-btn').addEventListener('click', function
 });
 
 // Function upload tugas
-document.getElementById('add-task-btn').addEventListener('click', function() {
+  document.getElementById('add-task-btn').addEventListener('click', function() {
     let taskInput = document.getElementById('task-input').value.trim();
     let priority = document.getElementById('priority-level').value;
-    let currentDate = new Date().toLocaleString();
+    let selectedDate = document.getElementById('date-picker').value;
 
     if (taskInput !== "") {
         let taskList = document.getElementById('task-list');
@@ -27,7 +27,7 @@ document.getElementById('add-task-btn').addEventListener('click', function() {
         newTask.classList.add('priority-' + priority);
         newTask.innerHTML = `
             <input type="checkbox" class="checkbox">
-            <span class="task-text">${taskInput} - ${currentDate} - Priority: ${priority}</span>
+            <span class="task-text">${taskInput} - ${selectedDate} - Priority: ${priority}</span>
             <button class="remove-task-btn">Remove</button>
         `;
 
@@ -35,14 +35,16 @@ document.getElementById('add-task-btn').addEventListener('click', function() {
         document.getElementById('task-input').value = "";
 
         // Checkbox 
-        newTask.querySelector('.checkbox').addEventListener('change', function() {
+         newTask.querySelector('.checkbox').addEventListener('change', function() {
             if (this.checked) {
                 moveTaskToDone(newTask);
+            } else {
+                moveTaskToTodo(newTask);
             }
         });
 
         // fungsi hapus tugas 
-        newTask.querySelector('.remove-task-btn').addEventListener('click', function() {
+       newTask.querySelector('.remove-task-btn').addEventListener('click', function() {
             taskList.removeChild(newTask);
         });
     }
@@ -51,17 +53,22 @@ document.getElementById('add-task-btn').addEventListener('click', function() {
 // Function untuk membuat tugas done ya bang
 function moveTaskToDone(taskItem) {
     let doneList = document.getElementById('done-list');
-    let doneTask = taskItem.cloneNode(true);
+    let doneTask = taskItem;
 
     doneTask.classList.add('completed-task');
-    doneTask.querySelector('.checkbox').disabled = true;
-
-    doneTask.querySelector('.remove-task-btn').addEventListener('click', function() {
-        doneList.removeChild(doneTask);
-    });
+    doneTask.querySelector('.checkbox').checked = true;
 
     doneList.appendChild(doneTask);
-    taskItem.remove();
+}
+
+function moveTaskToTodo(taskItem) {
+    let todoList = document.getElementById('task-list');
+    let undoneTask = taskItem;
+
+    undoneTask.classList.remove('completed-task');
+    undoneTask.querySelector('.checkbox').checked = false;
+
+    todoList.appendChild(undoneTask);
 }
 
 // Function untuk menghapus semua tugas 
